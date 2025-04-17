@@ -116,7 +116,7 @@
     tg.expand();
 
     const btn = document.getElementById("sendResultBtn");
-	    btn.addEventListener("click", () => {
+    btn.addEventListener("click", () => {
 	  const scoreText = document.querySelector(".score-container").textContent.trim();
 	  const score = parseInt(scoreText.split("+")[0], 10); // <== вот оно!
 	
