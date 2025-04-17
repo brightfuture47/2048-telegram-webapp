@@ -95,19 +95,35 @@
   <script src="js/local_storage_manager.js"></script>
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<button id="sendResultBtn" style="
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 18px;
+  font-size: 16px;
+  background: #3c3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  z-index: 9999;
+">
+  Отправить результат
+</button>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
 <script>
-  const tg = window.Telegram.WebApp;
-  tg.expand(); // Разворачивает приложение на весь экран
-  tg.MainButton.setText("Отправить результат");
-  tg.MainButton.show();
+  window.addEventListener("DOMContentLoaded", () => {
+    const tg = window.Telegram.WebApp;
 
-  tg.MainButton.onClick(() => {
-    const score = document.querySelector(".score-container").textContent.trim();
-    tg.sendData(JSON.stringify({ score }));
-    tg.showAlert("Отправлено. Закрой вручную.");
+    tg.expand(); // на весь экран
+
+    const btn = document.getElementById("sendResultBtn");
+    btn.addEventListener("click", () => {
+      const score = document.querySelector(".score-container").textContent.trim();
+      tg.sendData(JSON.stringify({ score }));
+      tg.showAlert("Результат отправлен: " + score);
+    });
   });
-</script>
+</script>	
 
 </body>
 </html>
