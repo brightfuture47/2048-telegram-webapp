@@ -106,10 +106,10 @@
 
       tg.MainButton.onClick(() => {
         const scoreElement = document.querySelector(".score-container");
-        if (scoreElement) {
-          const score = scoreElement.textContent.trim();
-          tg.sendData(JSON.stringify({ score }));
-          tg.close();
+        if (score) {
+      		const scoreText = score.textContent.trim();
+      		tg.sendData(JSON.stringify({ score: scoreText }));
+      		tg.close();
         }
       });
     });
