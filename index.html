@@ -105,7 +105,7 @@
   tg.MainButton.onClick(() => {
     const score = document.querySelector(".score-container").textContent.trim();
     tg.sendData(JSON.stringify({ score }));
-    tg.close();
+    tg.showAlert("Отправлено. Закрой вручную.");
   });
 </script>
 
