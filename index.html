@@ -96,18 +96,24 @@
   <script src="js/game_manager.js"></script>
   <script src="js/application.js"></script>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>
-  const tg = window.Telegram.WebApp;
-  tg.expand(); // Разворачивает приложение на весь экран
-  tg.MainButton.setText("Отправить результат");
-  tg.MainButton.show();
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const tg = window.Telegram.WebApp;
+      tg.expand();
 
-  tg.MainButton.onClick(() => {
-    const score = document.querySelector(".score-container").textContent.trim();
-    tg.sendData(JSON.stringify({ score }));
-    tg.close();
-  });
-</script>
+      tg.MainButton.setText("Отправить результат");
+      tg.MainButton.show();
+
+      tg.MainButton.onClick(() => {
+        const scoreElement = document.querySelector(".score-container");
+        if (scoreElement) {
+          const score = scoreElement.textContent.trim();
+          tg.sendData(JSON.stringify({ score }));
+          tg.close();
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
