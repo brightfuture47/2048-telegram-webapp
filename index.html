@@ -103,19 +103,9 @@
   tg.MainButton.show();
 
   tg.MainButton.onClick(() => {
-  	const scoreElement = document.querySelector(".score-container");
-  	if (scoreElement) {
-    		const score = scoreElement.textContent.trim();
-    		tg.sendData(JSON.stringify({ score }));
-
-   		 // Даем время на отправку данных
-    		setTimeout(() => {
-      			tg.close();
-    		}, 300); // 300 мс обычно достаточно
-  	} else {
-    	  tg.showAlert("Счёт не найден.");
-  	}
-      });
+    const score = document.querySelector(".score-container").textContent.trim();
+    tg.sendData(JSON.stringify({ score }));
+    tg.close();
   });
 </script>
 
