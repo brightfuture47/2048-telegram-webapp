@@ -117,26 +117,26 @@
 
     const btn = document.getElementById("sendResultBtn");
     btn.addEventListener("click", () => {
-	  const scoreText = document.querySelector(".score-container").textContent.trim();
-	  const score = parseInt(scoreText.split("+")[0], 10); // <== вот оно!
-	
-	  let promo = null;
-	
-	  if (score >= 1000) {
-	    promo = "SUPER1000";
-	  } else if (score >= 500) {
-	    promo = "BONUS500";
-	  } else if (score >= 200) {
-	    promo = "GIFT200";
-	  }
-	
-	  if (promo) {
-	    tg.sendData(JSON.stringify({ promo, score }));
-	    tg.showAlert("🎁 Промокод отправлен!");
-	  } else {
-	    tg.showAlert("Продолжай играть, чтобы получить промокод!");
-	  }
-	});
+  const scoreText = document.querySelector(".score-container").textContent.trim();
+  const baseScore = scoreText.includes("+") ? scoreText.split("+")[0] : scoreText;
+  const score = parseInt(baseScore, 10); // теперь это точно число без плюса
+
+  let promo = null;
+  if (score >= 1000) {
+    promo = "SUPER1000";
+  } else if (score >= 500) {
+    promo = "BONUS500";
+  } else if (score >= 200) {
+    promo = "GIFT200";
+  }
+
+  if (promo) {
+    tg.sendData(JSON.stringify({ promo: promo, score: score }));
+    tg.showAlert("🎁 Промокод отправлен: " + promo);
+  } else {
+    tg.showAlert("Недостаточно очков для промокода. Попробуйте ещё!");
+  }
+});
   });
 </script>	
 
